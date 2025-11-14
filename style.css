@@ -8,6 +8,7 @@ body{
 }
 .container{
     /* background-color:   black; */
+    position: relative;
     width: 220px;
     height: 220px;
     display: flex;
@@ -60,4 +61,84 @@ body{
     border: none;
     background-color: #161a1d;
     color: white; 
+}
+
+.vertical-left{
+    position:absolute;
+    top: 33.6px;
+    left: 39px;
+    height: 151px;
+    width: 2px;
+    background-color: red;
+}
+
+.vertical-middle{
+    position:absolute;
+    top: 33.6px;
+    left: 109.3px;
+    height: 151px;
+    width: 2px;
+    background-color: red;
+}
+
+.vertical-right{
+    position:absolute;
+    top: 33.6px;
+    left: 179.7px;
+    height: 151px;
+    width: 2px;
+    background-color: red;
+}
+
+.horizontal-up{
+    position:absolute;
+    top: 34px;
+    left: 39px;
+    height: 2px;
+    width: 143px;
+    background-color: red;
+}
+
+.horizontal-middle{
+    position:absolute;
+    top: 108.2px;
+    left: 39px;
+    height: 2px;
+    width: 143px;
+    background-color: red;
+}
+
+.horizontal-down{
+    position:absolute;
+    top: 182.2px;
+    left: 39px;
+    height: 2px;
+    width: 143px;
+    background-color: red;
+}
+
+.left-diagnol{
+    position:absolute;
+    top: 7px;
+    left: 107px;
+    height: 207px;
+    width: 2px;
+    background-color: red;
+    transform: rotate(137deg);
+    transform-origin: right;
+}
+
+.right-diagnol{
+    position:absolute;
+    top: 7px;
+    left: 109px;
+    height: 207px;
+    width: 2px;
+    background-color: red;
+    transform: rotate(43.5deg);
+    transform-origin: right;
+}
+
+.hide-line{
+    display: none;
 }

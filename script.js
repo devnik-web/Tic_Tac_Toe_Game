@@ -2,16 +2,19 @@ let boxex=document.querySelectorAll(".box");
 let resetbtn=document.querySelector("#reset");
 let winningText=document.querySelector(".winner");
 let newgamebtn=document.querySelector(".new-game");
+let containerDiv=document.querySelector(".container");
+
 const winPattern=[
-    [0,1,2],
-    [3,4,5],
-    [6,7,8],
-    [0,3,6],
-    [1,4,7],
-    [2,5,8],
-    [0,4,8],
-    [2,4,6]
+    [0,1,2,"horizontal-up"],
+    [3,4,5,"horizontal-middle"],
+    [6,7,8,"horizontal-down"],
+    [0,3,6,"vertical-left"],
+    [1,4,7,"vertical-middle"],
+    [2,5,8,"vertical-right"],
+    [0,4,8,"left-diagnol"],
+    [2,4,6,"right-diagnol"]
 ];
+
 
 let turnO=true;
 
@@ -52,6 +55,7 @@ function checkWin()
                     box.disabled=true;
                 }
                 showWinner();
+                drawLine(arr[3]);
             }   
         }
     }
@@ -63,13 +67,11 @@ function showWinner()
     if(turnO)
     {
         winningText.innerText="Congratulations! Winner is X";
-        newgamebtn.classList.remove("new-game");
-        newgamebtn.classList.add("show-new-game");
+        newgamebtn.className="show-new-game";
     }
     else{
         winningText.innerText="Congratulations! Winner is O";
-        newgamebtn.classList.remove("new-game");
-        newgamebtn.classList.add("show-new-game");
+        newgamebtn.className="show-new-game";
     }
 }
 
@@ -81,8 +83,26 @@ function resetGame()
         box.innerText="";
         turnO=true;
         winningText.innerText="";
-        newgamebtn.classList.remove("show-new-game");
-        newgamebtn.classList.add("new-game");
-
+        newgamebtn.className="new-game";
+        hideLine();
     }
+}
+
+function drawLine(direction){
+    line=document.createElement("div");
+    line.className=`${direction}`;
+    // line.className="vertical-middle";
+    // line.className="vertical-right";
+    // line.className="horizontal-left";
+    // line.className="horizontal-middle";
+    // line.className="horizontal-right";
+    // line.className="left-diagnol";
+    // line.className="right-diagnol";
+    containerDiv.append(line);
+};
+
+function hideLine()
+{
+    line.className="hide-line";
+    return;
 }
