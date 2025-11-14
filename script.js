@@ -17,7 +17,7 @@ const winPattern=[
 
 
 let turnO=true;
-
+let count=0; //count how many buttons got clicked
 boxex.forEach((box)=>{
     box.addEventListener("click",()=>{
         console.log("Button Clicked.");
@@ -25,14 +25,24 @@ boxex.forEach((box)=>{
         {
             box.innerText="O";
             turnO=false;
+            count++;
         }
         else{
             box.innerText="X";
             turnO=true;
+            count++;
         }
         box.disabled=true;
 
-        checkWin();
+        if(checkWin())
+        {
+            showWinner();
+            drawLine(arr[3]);
+        }
+        else if(!checkWin()&&count==9)
+        {
+            noWinner();
+        }
     });
 });
 
@@ -50,12 +60,7 @@ function checkWin()
         {
             if(one===two&&one===three)  //checkin equality
             {
-                for(box of boxex)   //disable all boxex
-                {
-                    box.disabled=true;
-                }
-                showWinner();
-                drawLine(arr[3]);
+                return true;
             }   
         }
     }
@@ -75,21 +80,27 @@ function showWinner()
     }
 }
 
+function noWinner()
+{
+    winningText.innerText="No One Won!";
+    newgamebtn.className="show-new-game";
+}
 function resetGame()
 {
     for(box of boxex)
     {
         box.disabled=false;
         box.innerText="";
-        turnO=true;
         winningText.innerText="";
         newgamebtn.className="new-game";
         hideLine();
     }
+    count=0;
+    turnO=true;
 }
 
+line=document.createElement("div");
 function drawLine(direction){
-    line=document.createElement("div");
     line.className=`${direction}`;
     // line.className="vertical-middle";
     // line.className="vertical-right";
@@ -105,4 +116,12 @@ function hideLine()
 {
     line.className="hide-line";
     return;
+}
+
+function disableBoxes()
+{
+    for(box of boxex)   //disable all boxex
+    {
+        box.disabled=true;
+    }
 }
